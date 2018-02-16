@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<title id="titulo_site">Divulga Solidário - Doações</title>
+		<meta charset="utf-8"> </meta>
+		<meta name="viewport" content="width=device-width, height=device-height" user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale= 1.0 ">
+
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+		
+		<!--
+	    <link rel="stylesheet" type="text/css" href="css/reset.css" media="all"/>
+		<link rel="stylesheet" type="text/css" href="css/estilo1.css" media="all"/>  -->
+
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" href="css/estiloo.css?version=140">
+
+	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	    <!-- Select -->
+  		<link rel="stylesheet" href="css/bootstrap-select.min.css">
+
+	    </head>
+	<body>	
+
+			<!-- NAVBAR COM MENU -->
+			<nav class="navbar navbar-fixed-top navbar-inverse navbar-transparente lot-font">
+				<div class="container-fluid ">
+					<!-- header -->
+					<div class="navbar-header">
+						<!-- botão toogle -->
+						
+						
+						<a href="#" class="navbar-left" >
+							 <img src="images/logo.png" class="img-responsive" style="min-width:250px;width:400px;margin-top:10px;margin-left:10px;" alt="Site ijunior" > 
+						</a>
+						
+						<!--
+						<a href="#" class="navbar-brand">
+							<span class="img-logo">Divulga Solidário</span>
+						</a>
+						-->
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barra-navegacao">
+						<span class="sr-only">alternar navegação</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>
+					</div> <!-- header -->
+
+					<!-- MENU -->
+					<div class="collapse navbar-collapse" id="barra-navegacao" style="">
+						<ul class="nav navbar-nav navbar-right">
+							<li >
+								<a href="index.html" alt="Home">Home</a>
+							</li>
+							<li>
+								<a href="doacao_aberta.html" alt="Doacoes">Doações(disponíveis)</a>
+							</li>
+							<li>
+								<a href="doacao_aguardando.html" alt="Doacoes">Doações(aguardando)</a>
+							</li>
+							<li>
+								<a href="instituicao.html" alt="Clientes">Instituições</a>
+							</li>
+							
+						</ul>
+					</div> <!-- menu -->
+
+
+				</div> <!-- container -->
+			</nav> <!-- FIM NAVBAR + MENU -->
+
+				
+			
+			<!-- CONTEÚDO PRINCIPAL -->
+			<div class="col-md-10 centered">
+				<h2>
+					Doações disponíveis <button type="button" class="btn btn-primary "  onclick="add_doacao('inserir')"> <span class="glyphicon glyphicon-plus-sign">Adicionar </span> </button>
+	 			</h2>
+	 			 <div style="text-align:right;padding-bottom:5px;">
+		            <form class="form-inline" onsubmit="return false;">
+		              <div class="form-group">
+		                <input type="text" class="form-control" id="search" placeholder="Pesquisar itens..." size="30" autocomplete="off" onkeyup="do_search()">
+		              </div>
+		            </form>
+		        </div>
+
+				<section class="panel panel-primary">
+					<div class="panel-heading table-responsive">
+						Doações disponíveis
+					</div> 
+
+					<table class="table table-hover table-condensed panel-body">
+						 <thead>
+							<th class="text-center">Instituicao</th>
+							<th class="text-center">Item</th>
+							<th class="text-center">Quantidade</th>
+							<th class="text-center">Detalhes</th>
+						</thead>
+						<tbody id="conteudo_aberto" >
+								
+						</tbody>
+					</table>
+
+					<nav aria-label="Page navigation" style="text-align: center;">
+					  <ul class="pagination">
+					    <li>
+					      <a href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <li><a href="#">1</a></li>
+					    
+					    <li>
+					      <a href="#" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+				</section>
+
+				<section class="panel panel-primary">
+					<div class="panel-heading table-responsive">
+						Doações aguardando recebimento
+					</div> 
+
+					<table class="table table-hover table-condensed panel-body">
+						 <thead>
+							<th class="text-center">Instituicao</th>
+							<th class="text-center">Item</th>
+							<th class="text-center">Quantidade</th>
+							<th class="text-center">Detalhes</th>
+						</thead>
+						<tbody id="conteudo_andamento">
+								
+						</tbody>
+					</table>
+				</section>
+			</div>
+
+			<!-- INICIO MODAL CADASTRO/EDIÇÃO -->
+
+			<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" style="z-index:2017">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+      					<div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+        					<h4 class="modal-title" > <span id="titulo_cadastro">Cadastro de Doação</span></h4>
+      					</div>
+      					<div class="modal-body">
+       						 <section class=\"container form-group\">
+								<form  id="formulario_doacao" >
+									<fieldset>
+											<p>
+					                            <label for="cadastro_instituicao">Instituicao:</label>
+
+				                           	<select class="selectpicker" name="instituicao_id_instituicao" id="cadastro_instituicao" data-live-search="true" title="Escolha a instituicao" required>
+                           				  	</select>
+					                        </p>
+					                        <hr>
+
+					                        <p>
+												<label for="cadastro_descricao">Descrição da doação (opcional):</label>
+												<textarea id="cadastro_descricao" type="text" name="descricao_doacao" class="form-control" rows="5"/></textarea>
+											</p>
+
+											<hr>
+
+											<!-- ITEM QUE SERÁ COPIADO -->
+
+											 <div id="conteudo_item">
+						                    	<div id="div_item" class="col-md-12" style="border: 1px solid #ddd">
+						                        	<div class="row">
+														<label for="cadastro_item" class="col-md-4" style="font-size: 18px;">Item:</label>
+														<input id="cadastro_item" required type="text" name="nome[]" class=" form-control"/>
+						                        	</div>
+													<br>
+													<div class="col-md-6">
+														<label for="cadastro_descricao_item" class="col-md-5" style="font-size: 16px;">Descrição:</label>
+														<input id="cadastro_descricao_item" type="text" name="descricao[]" class=" col-md-7"/>
+						                        	</div>
+													<div class="col-md-6">
+														<label for="cadastro_quantidade">Quantidade:</label>
+
+														<input id="cadastro_quantidade" required type="number" value="1" name="quantidade[]" style="width:50px;height:25px;" />
+														
+														<input type="hidden" name="id_item" id="cadastro_id_item">
+													</div>
+							 					</div>
+							 				</div>
+
+											<!-- RECEBE O CONTEÚDO DO PRÓXIMO ITEM --> 
+											<div id="proximo_item"></div>
+
+
+											<button type="button" class="btn btn-success pull-right" style="margin-top: 20px" onclick="add_item_na_doacao()" > <span  class="glyphicon glyphicon-plus"> Itens</span></button>
+											
+											<input type="hidden" id="cadastro_id_doacao" name="id_doacao"/>
+											<br/>
+									</div>
+					      					<div class="modal-footer">
+					    						<button type="button" class="btn btn-danger" id="fechar_cadastro" data-dismiss="modal">Cancelar</button>
+					    						<button type="submit" class="btn btn-primary" id="enviar">Salvar</button>
+					     					</div>
+	     							</fieldset>
+								</form>
+							</section>
+						
+    				</div><!-- /.modal-content -->
+  				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			                       
+
+			<!-- FIM MODAL CADASTRO -->
+
+			<!-- INICIO MODAL VISUALIZAR -->
+		    <div class="modal fade" id="modalVisualizar" tabindex="-1" role="dialog">
+		        <div class="modal-dialog" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                      <div class="center-block" style="width: 120px;">
+		                    	<span id="modal_visual_imagem_instituicao" >
+			                    	<!--
+			                    	<img src="uploads/nome.extensão" class="img-responsive"> 
+			                    	-->
+			                    </span>
+		                    </div>
+		                    <h3 class="modal-title text-capitalize" id="modal_visual_nome_instituicao" style="color: #009;text-align: center;">Nome</h3>
+		                </div>
+		                <div class="modal-body">
+		                		
+		                		<p style="color:#009;background-color: #eee;padding: 20px; margin:-15px;">Descrição</p>
+		                        <hr>								 
+		                        <p>
+		                            <strong>Descrição da doação:</strong>
+		                            <span id="modal_visual_descricao" class="text-capitalize"></span>
+		                        </p>
+
+		                        <hr>
+		                        <p style="color:#009;background-color: #eee;padding: 20px; margin:-15px;">Itens</p>
+		                        <hr>
+		                        <p>
+		                            <strong>Item:</strong>
+		                            <span id="modal_visual_item_nome" class="text-capitalize"></span>
+		                        </p>
+								 <p>
+		                            <strong>Quantidade necessitada:</strong>
+		                            <span id="modal_visual_item_quantidade" class="text-capitalize"></span>
+		                        </p>
+								 <p>
+		                            <strong>Descrição do item:</strong>
+		                            <span id="modal_visual_item_descricao" ></span>
+		                        </p>
+		                        <p id="conteudo_contribuinte">
+		                        	<!--
+										<p style="color:#009;background-color: #eee;padding: 20px; margin:-15px;">Contribuinte</p>
+				                        <hr>
+				                        <p>
+				                            <strong>Nome:</strong>
+				                            <span id="modal_visual_contribuinte_nome" class="text-capitalize"></span>
+				                        </p>
+										 <p>
+				                            <strong>Telefone:</strong>
+				                            <span id="modal_visual_contribuinte_telefone" class="text-capitalize"></span>
+				                        </p>
+										 <p>
+				                            <strong>Email:</strong>
+				                            <span id="modal_visual_contribuinte_telefone" ></span>
+				                        </p>
+		                        	-->
+		                        </p>
+		                        
+		                        <span id="modal_visual_id"></span>      
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		                    <button type="button" class="btn btn-danger" id="excluir_instituicao" data-dismiss="modal"><span class="glyphicon glyphicon-trash" aria-hidden="true">Excluir</span></button>
+		                    <button type="button" class="btn btn-success" onclick="add_doacao('editar')"><span class="glyphicon glyphicon-pencil" >Editar</span></button>
+		                    <button type="button" class="btn btn-lg btn-primary active" id="botao_doar" ><span class="glyphicon glyphicon-heart-empty" >Doar</span></button>
+		                </div>
+                	</div>
+           	 	</div>
+       		</div>
+			<!-- FIM MODAL VISUALIZAR -->
+
+			 <!-- INICIO MODAL EXCLUIR-->
+		    <div id="modalExcluir" class="modal fade" style="z-index:2017">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title">Excluir item</h4>
+		                </div>
+		                <div class="modal-body">
+		                    <input type="hidden" id="modal_excluir_id" />Excluir item <strong><span id="modal_excluir_nome"></span></strong>?
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" id="excluir_cancela" data-dismiss="modal">Não</button>
+		                    <!-- discuss this stuff -->
+		                    <button type="button" class="btn btn-danger" id="excluir_confirma">Sim</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+		    <!-- FIM MODAL EXCLUIR -->
+
+		    <!-- INICIO MODAL CONTRIBUINTE -->
+
+			<div class="modal fade" id="modalContribuinte" tabindex="-1" role="dialog" style="z-index:2017">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+      					<div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+        					<h4 class="modal-title" > <span id="titulo_cadastro">Informações de contato do contribuinte</span></h4>
+      					</div>
+      					<div class="modal-body">
+       						 <section class=\"container form-group\">
+								<form  id="formulario_contribuinte" onsubmit="cadastra_contribuinte();return false;">
+									<fieldset>
+										<p>
+											<label for="cadastro_nome_contribuinte">Nome:</label>
+											<input id="cadastro_nome_contribuinte" type="text" name="nome_contribuinte" class="form-control"/>
+										</p>
+
+										<hr>
+
+										<p>
+											<label for="cadastro_telefone_contribuinte">Telefone:</label>
+											<input id="cadastro_telefone_contribuinte" type="text" name="telefone_contribuinte" maxlength="14" OnKeyPress="formatar('## # ####-####', this)" class="form-control"/>
+										</p>
+
+										<hr>
+
+										<p>
+											<label for="cadastro_email_contribuinte">Email:</label>
+											<input id="cadastro_email_contribuinte" type="email" name="email_contribuinte" class="form-control"/>
+										</p>
+
+									</fieldset>
+								</form>
+								<br/>
+							</section>
+      					</div>
+      					<div class="modal-footer">
+    						<button type="button" class="btn btn-danger" id="fechar_cadastro" data-dismiss="modal">Cancelar</button>
+    						<button type="button" class="btn btn-primary" id="enviar" onclick="cadastra_contribuinte()">Salvar</button>
+     					</div>
+    				</div><!-- /.modal-content -->
+  				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			                       
+
+			<!-- FIM MODAL CONTRIBUINTE-->
+
+			<!-- MODAL PARA MENSAGENS NA TELA -->
+			<div id="modalInfo" class="modal fade" style="z-index:2018">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title" id="modal_info_titulo">Title</h4>
+		                </div>
+		                <div class="modal-body" id="modal_info_conteudo">
+		                    Content
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+			<!-- FIM MODAL MENSAGENS -->
+
+			<!-- RODAPÉ -->
+			<footer class=" footer navbar-static-bottom">
+				<div class="container">
+					<div class="text-center"> 
+						® Divulga Solidário | Desenvolvido por:
+
+							<a href="http://www.ijunior.com.br" target="_blank">   
+								<img src="images/fundomeio.png" alt="Site empresa" id="imgcontatos1"/>
+							</a>
+					</div>
+				</div>
+			</footer>
+		
+	 	<!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   		<script src="js/ie10-viewport-bug-workaround.js"></script>
+   		<!-- Select -->
+ 	    <script src="js/bootstrap-select.min.js"></script>
+   		<script src="js/defaults-pt_BR.min.js"></script>
+   		<!-- Custom scripts -->
+    	<script src="js/doacao.js"></script>
+    	<script src="js/geral.js"></script>
+    	<!-- <script src="js/instituicao.js"></script> -->
+	</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<title id="titulo_site">Divulga Solidário - Home</title>
+		<meta charset="utf-8"> </meta>
+		<meta name="viewport" content="width=device-width, height=device-height" user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-scale= 1.0 ">
+		
+		<!--
+	    <link rel="stylesheet" type="text/css" href="css/reset.css" media="all"/>
+		<link rel="stylesheet" type="text/css" href="css/estilo1.css" media="all"/>  -->
+
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" href="css/estiloo.css?version=145">
+
+	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+	    </head>
+	<body>	
+			<main>
+			<!-- NAVBAR COM MENU -->
+			<nav class="navbar navbar-fixed-top navbar-inverse navbar-transparente lot-font">
+				<div class="container-fluid ">
+					<!-- header -->
+					<div class="navbar-header">
+						<!-- botão toogle -->
+						
+						
+						<a href="#" class="navbar-left" >
+							 <img src="images/logo.png" class="img-responsive" style="min-width:250px;width:400px;margin-top:10px;margin-left:10px;" alt="Site ijunior" > 
+						</a>
+						
+						<!--
+						<a href="#" class="navbar-brand">
+							<span class="img-logo">Divulga Solidário</span>
+						</a>
+						-->
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#barra-navegacao">
+						<span class="sr-only">alternar navegação</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>
+					</div> <!-- header -->
+
+					<!-- MENU -->
+					<div class="collapse navbar-collapse" id="barra-navegacao" style="">
+						<ul class="nav navbar-nav navbar-right">
+							<li >
+								<a href="index.html" alt="Home">Home</a>
+							</li>
+							<li>
+								<a href="doacao_aberta.html" alt="Doacoes">Doações<br>(disponíveis)</a>
+							</li>
+							<li>
+								<a href="doacao_aguardando.html" alt="Doacoes">Doações<br>(aguardando)</a>
+							</li>
+							<li>
+								<a href="instituicao.html" alt="Clientes">Instituições</a>
+							</li>
+							
+						</ul>
+					</div> <!-- menu -->
+
+
+				</div> <!-- container -->
+			</nav> <!-- FIM NAVBAR + MENU -->
+
+				
+			
+			<!-- CONTEÚDO PRINCIPAL -->
+			<div class="col-md-10 centered">
+				<img src="images/pagina-em-construcao.jpg" class="center-block">
+			</div>
+
+			<!-- INICIO MODAL CADASTRO/EDIÇÃO -->
+
+			<div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" style="z-index:2017">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+      					<div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+        					<h4 class="modal-title" > <span id="titulo_cadastro">Cadastrar Instituição</span></h4>
+      					</div>
+      					<div class="modal-body">
+       						 <section class=\"container form-group\">
+								<form  id="formulario_instituicao" onsubmit="inserir_instituicao();return false;">
+									<fieldset>
+										
+										<p>
+											<label for="nome_instituicao">Nome:</label>
+											<input id="nome_instituicao" type="text" name="nome" class="form-control" />
+										</p>
+										<p>
+											<label for="estado_instituicao">Estado:</label>
+											<input id="estado_instituicao" type="text" name="estado" class="form-control"/>
+										</p>
+										<p>
+											<label for="cidade_instituicao">Cidade:</label>
+											<input id="cidade_instituicao" type="text" name="cidade"  class="form-control"/>
+										</p>
+										<p>
+											<label for="bairro_instituicao">Bairro:</label>
+											<input id="bairro_instituicao" type="text" name="bairro" class="form-control"/>
+										</p>
+										<p>
+											<label for="rua_instituicao">Rua:</label>
+											<input id="rua_instituicao" type="text" name="rua" class="form-control"/>
+										</p>
+										<p>
+											<label for="numero_instituicao">Número:</label>
+											<input id="numero_instituicao" type="number" name="numero" class="form-control"/>
+										</p>
+										<p>
+											<label for="telefone_instituicao">Telefone:</label>
+											<input id="telefone_instituicao" type="text" name="telefone" maxlength="14" OnKeyPress="formatar('## # ####-####', this)" class="form-control"/>
+										</p>
+										<p>
+											<label for="responsavel_instituicao">Responsável:</label>
+											<input id="responsavel_instituicao" type="text" name="responsavel" maxlength="255" class="form-control"/>
+										</p>
+										<p>
+											<label for="emailR_instituicao">Email da Instituição:</label>
+											<input id="emailR_instituicao" type="email" name="email" class="form-control"/>
+										</p>
+										<p>
+											<label for="descricao_instituicao">Descrição:</label>
+											<textarea id="descricao_instituicao" type="textarea" name="descricao" class="form-control" rows="10" /></textarea>
+										</p>
+										<input type="hidden" id="id_instituicao" name="id_instituicao"/>
+
+									</fieldset>
+								</form>
+								<br/>
+							</section>
+      					</div>
+      					<div class="modal-footer">
+    						<button type="button" class="btn btn-danger" id="fechar_cadastro" data-dismiss="modal">Cancelar</button>
+    						<button type="button" class="btn btn-primary" id="enviar" onclick="inserir_instituicao()">Salvar</button>
+     					</div>
+    				</div><!-- /.modal-content -->
+  				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<!-- FIM MODAL CADASTRO -->
+
+			<!-- INICIO MODAL VISUALIZAR -->
+		    <div class="modal fade" id="modalVisualizar" tabindex="-1" role="dialog">
+		        <div class="modal-dialog" role="document">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h3 class="modal-title" id="modal_visual_nome" style="color: #009;text-align: center;">Nome</h3>
+		                </div>
+		                <div class="modal-body">
+		                		
+		                		<p style="color:#009;background-color: #eee;padding: 20px; margin:-15px;">Contato</p>
+		                        <hr>								 <p>
+		                            <strong>Telefone:</strong>
+		                            <span id="modal_visual_telefone"></span>
+		                        </p>
+								 <p>
+		                            <strong>Responsável:</strong>
+		                            <span id="modal_visual_responsavel"></span>
+		                        </p>
+								 <p>
+		                            <strong>Email:</strong>
+		                            <span id="modal_visual_email"></span>
+		                        </p>
+		                         <p>
+		                            <strong>Descrição:</strong>
+		                            <span id="modal_visual_descricao"></span>
+		                        </p>
+		                        <hr>
+		                        <p style="color:#009;background-color: #eee;padding: 20px; margin:-15px;">Localização</p>
+		                        <hr>
+		                        <p>
+		                           <strong>Estado:</strong>
+		                            <span id="modal_visual_estado"></span>
+		                        </p>
+		                        <p>
+		                            <strong>Cidade:</strong>
+		                            <span id="modal_visual_cidade"></span>
+		                        </p>
+		                        <p>
+		                            <strong>Bairro:</strong>
+		                            <span id="modal_visual_bairro"></span>
+		                        </p>
+		                         <p>
+		                            <strong>Rua:</strong>
+		                            <span id="modal_visual_rua"></span>
+		                        </p>
+								 <p>
+		                            <strong>Numero:</strong>
+		                            <span id="modal_visual_numero"></span>
+		                        </p>
+		                        	<span id="modal_visual_id"></span>      
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		                    <button type="button" class="btn btn-danger" id="excluir_instituicao" data-dismiss="modal"><span class="glyphicon glyphicon-trash" aria-hidden="true">Excluir</span></button>
+		                    <button type="button" class="btn btn-success" onclick="add_instituicao('editar')"><span class="glyphicon glyphicon glyphicon-pencil" >Editar</span></button>
+		                </div>
+                	</div>
+           	 	</div>
+       		</div>
+			<!-- FIM MODAL VISUALIZAR -->
+
+			 <!-- INICIO MODAL EXCLUIR-->
+		    <div id="modalExcluir" class="modal fade" style="z-index:2017">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title">Excluir instituição</h4>
+		                </div>
+		                <div class="modal-body">
+		                    <input type="hidden" id="modal_excluir_id" />Excluir instituição <strong><span id="modal_excluir_nome"></span></strong>?
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" id="excluir_cancela" data-dismiss="modal">Não</button>
+		                    <!-- discuss this stuff -->
+		                    <button type="button" class="btn btn-danger" id="excluir_confirma">Sim</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+		    <!-- FIM MODAL EXCLUIR -->
+
+			<!-- MODAL PARA MENSAGENS NA TELA -->
+			<div id="modalInfo" class="modal fade" style="z-index:2018">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		                    <h4 class="modal-title" id="modal_info_titulo">Title</h4>
+		                </div>
+		                <div class="modal-body" id="modal_info_conteudo">
+		                    Content
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+
+			<!-- FIM MODAL MENSAGENS -->
+			</main>
+
+			<!-- RODAPÉ -->
+			<footer class=" footer navbar-static-bottom">
+				<div class="container">
+					<div class="text-center"> 
+						® Divulga Solidário | Desenvolvido por:
+
+							<a href="http://www.ijunior.com.br" target="_blank">   
+								<img src="images/fundomeio.png" alt="Site empresa" id="imgcontatos1"/>
+							</a>
+					</div>
+				</div>
+			</footer>
+		
+	 	<!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/jquery.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+   		<script src="js/ie10-viewport-bug-workaround.js"></script>
+   		<!-- Select -->
+ 	    <script src="js/bootstrap-select.min.js"></script>
+   		<script src="js/defaults-pt_BR.min.js"></script>
+   		<!-- Custom scripts -->
+    	<script src="js/instituicao.js"></script>
+    	<script src="js/geral.js"></script>
+    	<!-- <script src="js/instituicao.js"></script> -->
+	</body>
+</html>

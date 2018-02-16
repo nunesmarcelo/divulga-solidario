@@ -1,0 +1,149 @@
+@encoding "utf-8";
+
+/* ============= LAYOUT ============ */
+
+.navbar-transparente, footer,.panel-heading{
+	/*background: url('../images/top-header.png') center top repeat;*/
+	background: linear-gradient(-90deg,#0f0c29,#1a2a6c,#0f0c29);
+	color:#555;
+	font-size: 20px;
+	font-variant: small-caps;
+	font-family: "Trebuchet MS", Helvetica, serif !important;
+}
+
+main {
+    min-height: 90vh;
+    min-height: -webkit-calc(90vh - 100px);
+    min-height:    -moz-calc(90vh - 100px);
+    min-height:         calc(90vh - 100px);
+}
+
+footer {
+    min-height: 100px;
+}
+
+/* ----------- ANIMAÇÃO CARREGANDO --------- */
+.wavecontainer {
+  width: 80px;
+}
+
+.wave {
+  margin-top: 15px;
+  float:left;
+  width: 18px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid #888;
+  margin-left: -2px;
+  animation: slide 0.6s infinite linear;
+}
+
+.wave:nth-child(2n+1) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slide {
+  50% {
+    margin-top: 25px;
+  }
+}
+
+/* ---------- FIM ANIMAÇÃO ----------------- */
+
+
+
+
+/* ---------- BARRA DE NAVEGAÇÃO ---------- */
+.dropdown-menu{
+	font-size: 10px;
+	border: 1px solid black;
+}
+
+.texto-logo{
+	font-variant: small-caps !important;
+	font-size: 48px;
+}
+
+.navbar-transparente{
+	padding:20px;
+	height: 120px;
+}
+
+.img-logo {
+	height: 60px;
+	width: 400px;
+	display: block;
+	background: url('../images/logo.png') no-repeat;
+	border:1px solid red;
+	background-size: contain;
+	color: transparent;
+}
+
+#logomarca{
+	margin-top: -10px;
+	margin-left:-50px;
+}
+
+
+
+/* ---------- footer ------- */
+#imgcontatos1{
+	width: 110px;
+	/*float:center;*/
+}
+
+footer {
+	height: 120px;
+	padding: 30px;
+	border-top: 1px solid #bdf;
+	color: #eee;
+	/*text-align: center;*/
+}
+
+
+
+/*---------- TABELA ----- 
+
+table, tr, th, td {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px 10px;
+}
+
+th {
+	font-weight: bold;
+	background: #333;
+	color: #fff;
+}
+
+.caixa{
+	margin:0px auto;
+	border: 1px solid red;
+}
+
+ -------------------- */
+
+.centered {
+    margin: 156px auto;
+    display:block;
+    float: none ;
+    font-size: 18px;
+    font-family: "Trebuchet MS", Helvetica, serif !important;
+
+}
+
+
+/* ========== TIPOGRAFIA ============= */
+
+@font-face {
+      font-family: "lot";
+      src: url("fonts/paranoid.otf") format("opentype");
+
+}
+
+.lot-font{
+     font-family: "lot";  
+} 
