@@ -39,4 +39,9 @@
 
 			return $dao->delete2((int)$ids);
 		}
+
+		public function logar($login,$senha){
+			$dao = new InstituicaoDao();
+			return $dao->logar($login,$senha);
+		}
 	}

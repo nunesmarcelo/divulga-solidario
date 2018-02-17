@@ -154,20 +154,12 @@ th {
     margin: 156px auto;
     display:block;
     float: none ;
-    font-size: 18px;
+    font-size: 17px;
     font-family: "Trebuchet MS", Helvetica, serif !important;
 
 }
 
-
-/* ========== TIPOGRAFIA ============= */
-
-@font-face {
-      font-family: "lot";
-      src: url("fonts/paranoid.otf") format("opentype");
-
+.btn-circle{
+	border-radius: 10px;
+	width: 80px;
 }
-
-.lot-font{
-     font-family: "lot";  
-} 

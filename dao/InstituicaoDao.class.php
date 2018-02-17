@@ -54,4 +54,8 @@ class InstituicaoDao extends SuperDao{
 		//retorna quantos foram removidos.
 		return parent::delete1($condicao);
 	}
+
+	public function logar($login,$senha){
+		return parent::logar($login,$senha);
+	}
 }

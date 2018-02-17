@@ -65,4 +65,8 @@ class SuperDao extends MysqlDbDao{
 	public function doar($id_item,$id_contribuinte,$data_marcada,$entregue){
 		return parent::doar($id_item,$id_contribuinte,$data_marcada,$entregue);
 	}
+
+	public function logar($login,$senha){
+		return parent::logar($login,$senha);
+	}
 }

@@ -15,6 +15,8 @@ $(document).ready(function(){
     });
 
      $('#formulario_instituicao').submit(inserir_instituicao2);
+
+     //$("#formulario_login").submit(logar);
 });
 
 
@@ -135,9 +137,59 @@ function recebe_uma_instituicao(data){
 
 
 //QUANDO O BOTÃO DO MODAL É CLICADO
-function add_instituicao(operacao){  
+function add_instituicao(operacao){ 
+    $.ajax({
+        url: "Instituicao.php?action=sessao",
+        type: 'POST',
+        success: function(saida){
+            if(saida==0){
+               $("#modalLogin").modal("show");
+               //$("#modalLogin").on("shown.bs.modal",function(){
+                //  alert("rolaa");
+                   $("#formulario_login").on("submit",function(e){
+                      
+                       e.preventDefault();
+                      
+                        var dados =  $("#formulario_login").serialize();
+                     
+                        $.ajax({
+                             url: "Instituicao.php?action=logar",
+                             type: "POST",
+                             data: dados,
+                            success: function(saida2){
+                                  if(saida2 == 1){
+                                      $('#modalLogin').modal('toggle');
+                                      add_instituicao_verificado(operacao);
 
-    if(operacao.localeCompare("editar") == 0){ 
+                                  }
+                                  if(saida2 == 0){
+                                      //$("#modalLogin").modal("hide");
+                                      show_info("Erro!","login ou senha incorretos!!!");
+                                      $("#login").val("");
+                                      $("#senha").val("");
+                                      return 0;
+                                  }
+                            }
+                       });
+                    });
+                //});
+              
+            }
+            if(saida==1){
+                console.log("oi");
+
+                add_instituicao_verificado(operacao);
+            }
+        }
+    }); 
+
+   
+
+}
+
+function add_instituicao_verificado(operacao){
+    console.log("oi");
+     if(operacao.localeCompare("editar") == 0){ 
       $("#titulo_cadastro").text("Editar Instituição");  
       $("#enviar").text("Salvar Alterações");  
       $("#nome_instituicao").val(instituicaoSelecionada[0].nome);
@@ -153,9 +205,9 @@ function add_instituicao(operacao){
       $("#id_instituicao").val(instituicaoSelecionada[0].id_instituicao);
     }
 
-     $("#modalCadastro").modal("show");
 
-
+     $("#modalCadastro").modal('toggle');
+     $("#modalCadastro").css({"overflow":"auto"});
 
 }
 
@@ -251,4 +303,7 @@ function excluir_confirmado(){
     });
 }
 
-	
+
+
+// ================= LOGIN - ADMIN PARA ACESSO A EDIÇÕES. ============ //
+

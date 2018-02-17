@@ -13,9 +13,16 @@
 
 		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
+	<!-- Latest compiled and minified CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- BOOTSTRAP -->
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+
+		<!-- BOOTSTRAP 
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
 
 		<!-- CUSTOM CSS -->
 		<link rel="stylesheet" href="css/estiloo.css?version=160">
@@ -133,7 +140,7 @@
 									<fieldset>
 										<p>
 											<label for="nome_instituicao">Nome:</label>
-											<input id="nome_instituicao" required type="text" name="nome" class="form-control" />
+											<input id="nome_instituicao" required type="text" name="nome" autofocus class="form-control" />
 										</p>
 										<p>
 											<label for="estado_instituicao">Estado:</label>
@@ -319,6 +326,44 @@
 		    </div>
 
 			<!-- FIM MODAL MENSAGENS -->
+
+			<!-- INICIO MODAL LOGIN -->
+
+			<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" style="z-index:2017">
+  				<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+      					<div class="modal-header">
+        					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+        					<h4 class="modal-title" > <span id="titulo_cadastro">Autenticação</span></h4>
+      					</div>
+      					<div class="modal-body">
+       						 <section class=\"container form-group\">
+								<form  id="formulario_login">
+									<fieldset>
+										<p>
+											<label for="login">Login:</label>
+											<input id="login" required type="text" name="login" autofocus class="form-control" />
+										</p>
+										<p>
+											<label for="senha">Senha:</label>
+											<input id="senha" required type="text" name="senha" class="form-control"/>
+										</p>
+									</fieldset>
+									<br/>
+									
+		      					</div>
+		      					<div class="modal-footer">
+		    						<button type="button" class="btn btn-danger" id="fechar_cadastro" data-dismiss="modal">Cancelar</button>
+		    						<button type="submit" class="btn btn-primary" id="entrar">Entrar</button>
+		    					</div>
+    						</form>
+						</section>
+    				</div><!-- /.modal-content -->
+  				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+			<!-- FIM MODAL LOGIN -->
+
 			</main>
 
 			<!-- RODAPÉ -->
@@ -337,8 +382,13 @@
 	 	<!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
-		<script src="js/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		
+		<!-- Última versão JavaScript compilada e minificada -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+ 		<script src="js/bootstrap.min.js"></script>
+
+		<!--<script src="js/bootstrap.min.js"></script> -->
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    		<script src="js/ie10-viewport-bug-workaround.js"></script>
    		<!-- Select -->

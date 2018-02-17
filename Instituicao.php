@@ -1,5 +1,6 @@
 
 <?php 	
+	session_start();
 	require_once 'funcoes/funcoes.php';
 	$view = new InstituicaoView();
 
@@ -31,6 +32,14 @@
 
 		case 'excluir':
 			excluir();
+			break;
+
+		case 'sessao':
+			sessao();
+			break;
+
+		case 'logar':
+			logar();
 			break;
 
 		default:
@@ -115,4 +124,33 @@
 		echo json_encode($saida);
 	}
 
+	function sessao(){
+
+		if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+			echo "1";
+		}
+		else{
+			echo "0";
+		}
+	}
+
+	function logar(){
+		global $view;
+		$login = empty($_REQUEST['login']) ? '' : $_REQUEST['login']; 
+		$senha = empty($_REQUEST['senha']) ? '' : $_REQUEST['senha'];
+		if($login != '' && $senha != ''){
+			if($view->logar($login,$senha)){
+				$_SESSION['login'] = $login;
+				$_SESSION['senha'] = $senha;
+				echo "1";
+			}
+			else{
+				echo "0";
+			}
+		}
+		else{
+			echo "0";
+		}
+		
+	}
 	

@@ -66,4 +66,9 @@
 			$controller = new InstituicaoController();
 			return $controller->delete($ids);
 		}
+
+		public function logar($login,$senha){
+			$controller = new InstituicaoController();
+			return $controller->logar($login,$senha);
+		}
 	}

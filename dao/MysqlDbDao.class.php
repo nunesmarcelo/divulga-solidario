@@ -155,4 +155,16 @@ class MysqlDbDao {
 		
 		return $this->getConnection()->affected_rows;
 	}
+
+	public function logar($login,$senha){
+		$sql = "select * FROM admin WHERE login = '$login' AND senha = '$senha'";
+		$result = $this->query($sql);
+
+		if($result->num_rows > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 }
