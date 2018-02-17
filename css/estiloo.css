@@ -11,6 +11,28 @@
 	font-family: "Trebuchet MS", Helvetica, serif !important;
 }
 
+
+@media screen and (max-width: 768px) {
+    .botao-toggle:focus , .botao-toggle:hover , .botao-toggle{
+		background: linear-gradient(-90deg,#0f0c29,#1a2a6c,#0f0c29);
+
+	}
+}
+
+
+
+.quadrado-down {
+	background: linear-gradient(-90deg,#0f0c29,#1a2a6c,#0f0c29);
+
+}
+
+.down-do-menu{
+	font-variant:normal !important;
+	font-size: 20px;
+	color:#999 !important;
+}
+
+
 main {
     min-height: 90vh;
     min-height: -webkit-calc(90vh - 100px);
@@ -97,6 +119,8 @@ footer {
 	padding: 30px;
 	border-top: 1px solid #bdf;
 	color: #eee;
+	font-variant: normal;
+	font-size: 18px;
 	/*text-align: center;*/
 }
 
