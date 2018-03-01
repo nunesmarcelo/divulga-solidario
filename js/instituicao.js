@@ -138,6 +138,8 @@ function recebe_uma_instituicao(data){
 
 //QUANDO O BOTÃO DO MODAL É CLICADO
 function add_instituicao(operacao){ 
+    //TIPOOPERACAO 1 = ADD/EDITAR. TIPO2 = EXCLUIR.
+    var tipooperacao = 1;
     $.ajax({
         url: "Instituicao.php?action=sessao",
         type: 'POST',
@@ -149,35 +151,34 @@ function add_instituicao(operacao){
                    $("#formulario_login").on("submit",function(e){
                       
                        e.preventDefault();
-                      
+                        
                         var dados =  $("#formulario_login").serialize();
-                     
-                        $.ajax({
-                             url: "Instituicao.php?action=logar",
-                             type: "POST",
-                             data: dados,
-                            success: function(saida2){
-                                  if(saida2 == 1){
-                                      $('#modalLogin').modal('toggle');
-                                      add_instituicao_verificado(operacao);
+                        if(tipooperacao == 1){
+                            $.ajax({
+                               url: "Instituicao.php?action=logar",
+                               type: "POST",
+                               data: dados,
+                              success: function(saida2){
+                                    if(saida2 == 1){
+                                        $('#modalLogin').modal('toggle');
+                                        add_instituicao_verificado(operacao);
 
-                                  }
-                                  if(saida2 == 0){
-                                      //$("#modalLogin").modal("hide");
-                                      show_info("Erro!","login ou senha incorretos!!!");
-                                      $("#login").val("");
-                                      $("#senha").val("");
-                                      return 0;
-                                  }
-                            }
-                       });
+                                    }
+                                    if(saida2 == 0){
+                                        //$("#modalLogin").modal("hide");
+                                        show_info("Erro!","login ou senha incorretos!!!");
+                                        $("#login").val("");
+                                        $("#senha").val("");
+                                        return 0;
+                                    }
+                              }
+                            });
+                        }  
                     });
                 //});
               
             }
-            if(saida==1){
-                console.log("oi");
-
+            if(saida==1 && tipooperacao == 1){
                 add_instituicao_verificado(operacao);
             }
         }
@@ -273,6 +274,49 @@ function trata_inserir(result){
 
 //QUANDO CLICADO NO BOTÃO DE EXCLUIR
 function excluir_instituicao(){
+  //TIPO 2 = EXCLUIR. TIPO 1 = ADD/EDITAR.
+  var tipooperacao = 2;
+   $.ajax({
+        url: "Instituicao.php?action=sessao",
+        type: 'POST',
+        success: function(saida){
+            if(saida==0){
+               $("#modalLogin").modal("show");
+               $("#formulario_login").on("submit",function(e){
+                     e.preventDefault();
+                      
+                      var dados =  $("#formulario_login").serialize();
+                      if(tipooperacao == 2){
+                        $.ajax({
+                             url: "Instituicao.php?action=logar",
+                             type: "POST",
+                             data: dados,
+                            success: function(saida2){
+                                  if(saida2 == 1){
+                                      $('#modalLogin').modal('toggle');
+                                      excluir_instituicao_verificado();
+
+                                  }
+                                  if(saida2 == 0){
+                                      //$("#modalLogin").modal("hide");
+                                      show_info("Erro!","login ou senha incorretos!!!");
+                                      $("#login").val("");
+                                      $("#senha").val("");
+                                      return 0;
+                                  }
+                            }
+                        });
+                      }
+                });              
+            }
+            if(saida==1 && tipooperacao==2){
+                excluir_instituicao_verificado();
+            }
+        }
+     });
+}
+
+function excluir_instituicao_verificado(){
     $("#modal_excluir_nome").html(instituicaoSelecionada[0].nome);
     $("#modal_excluir_id").val(instituicaoSelecionada[0].id_instituicao);
     $("#modalExcluir").modal("show");
