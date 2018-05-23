@@ -16,8 +16,6 @@ $(document).ready(function(){
     $('#formulario_contribuinte').submit(cadastra_contribuinte);
     
 
-
-   
 });
 
 var k =0;
